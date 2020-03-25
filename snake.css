@@ -1,0 +1,22 @@
+h1 {
+    color: #e2bef1;
+    font-family: Verdana;
+    font-size: 45px;
+    text-align: center;
+}
+
+h2 {
+    color: #e2bef1;
+    font-family: Verdana;
+    font-size: 16;
+    text-align: center;
+}
+
+canvas {
+    display: block;
+    margin: 0 auto;
+}
+
+body {
+    background-color: slategrey;
+}

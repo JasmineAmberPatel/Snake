@@ -7,7 +7,7 @@ const ground = new Image();
 ground.src = "images/ground.png";
 
 const foodImg = new Image();
-foodImg.src = "images/food.png";
+foodImg.src = "images/doughnut.png";
 
 let snake = [];
 snake[0] = {
@@ -53,10 +53,10 @@ function collision(head, array) {
 function draw() {
     context.drawImage(ground, 0, 0);
     for (let i = 0; i < snake.length; i++) {
-        context.fillStyle = (i === 0) ? "green" : "white";
+        context.fillStyle = (i === 0) ? "slategrey" : "white";
         context.fillRect(snake[i].x, snake[i].y, box, box);
 
-        context.strokeStyle = "red";
+        context.strokeStyle = "slategrey";
         context.strokeRect(snake[i].x, snake[i].y, box, box);
     }
     context.drawImage(foodImg, food.x, food.y);
@@ -84,7 +84,7 @@ function draw() {
 
 
     context.fillStyle = "white"
-    context.font = "45px changa one"
+    context.font = "45px Verdana one"
     context.fillText(score, 2 * box, 1.6 * box);
 }
 
