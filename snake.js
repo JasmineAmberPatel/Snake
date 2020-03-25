@@ -22,22 +22,20 @@ let food = {
 
 let score = 0;
 
-document.addEventListener("keydown", directionCodes);
+let d;
 
-let direction;
-let snakeX = snake[0].x;
-let snakeY = snake[0].y;
+document.addEventListener("keydown",direction);
 
-function directionCodes(event) {
+function direction(event){
     let key = event.keyCode;
-    if (key == 37 && direction != "Right") {
-        snakeX -= box;
-    } else if (key == 38 && direction != "Down") {
-        snakeY -= box;
-    } else if (key == 39 && direction != "Left") {
-        snakeX += box;
-    } else if (key == 40 && direction != "Up") {
-        snakeY += box;
+    if( key === 37 && d != "RIGHT"){
+        d = "LEFT";
+    }else if(key === 38 && d != "DOWN"){
+        d = "UP";
+    }else if(key === 39 && d != "LEFT"){
+        d = "RIGHT";
+    }else if(key === 40 && d != "UP"){
+        d = "DOWN";
     }
 }
 
@@ -51,7 +49,9 @@ function collision(head, array) {
 }
 
 function draw() {
+
     context.drawImage(ground, 0, 0);
+
     for (let i = 0; i < snake.length; i++) {
         context.fillStyle = (i === 0) ? "slategrey" : "white";
         context.fillRect(snake[i].x, snake[i].y, box, box);
@@ -59,7 +59,16 @@ function draw() {
         context.strokeStyle = "slategrey";
         context.strokeRect(snake[i].x, snake[i].y, box, box);
     }
+
     context.drawImage(foodImg, food.x, food.y);
+
+    let snakeX = snake[0].x;
+    let snakeY = snake[0].y;
+
+    if( d === "LEFT") snakeX -= box;
+    if( d === "UP") snakeY -= box;
+    if( d === "RIGHT") snakeX += box;
+    if( d === "DOWN") snakeY += box;
 
     if (snakeX === food.x && snakeY === food.y) {
         score++;
@@ -84,8 +93,8 @@ function draw() {
 
 
     context.fillStyle = "white"
-    context.font = "45px Verdana one"
-    context.fillText(score, 2 * box, 1.6 * box);
+    context.font = "45px Verdana"
+    context.fillText(score, 2 * box, 2 * box);
 }
 
 let game = setInterval(draw, 100);
