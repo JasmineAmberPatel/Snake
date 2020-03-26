@@ -4,10 +4,21 @@ const context = canvas.getContext("2d");
 const box = 32;
 
 const ground = new Image();
-ground.src = "images/ground.png";
+ground.src = "images/background.jpg";
+
+const random_images_array = ["apple.png", "cakey.png", "doughnut.png", "food.png", "melon.png"];
+
+function getRandomImage(imgAr, path) {
+    path = path || 'images/';
+    let num = Math.floor(Math.random() * imgAr.length);
+    let img = imgAr[num];
+    let imgStr = '<img src="' + path + img + '" alt = "">';
+    document.write(imgStr); document.close();
+}
 
 const foodImg = new Image();
-foodImg.src = "images/doughnut.png";
+foodImg.src = "images/melon.png"; //getRandomImage(random_images_array);
+
 
 let snake = [];
 snake[0] = {
@@ -24,17 +35,17 @@ let score = 0;
 
 let d;
 
-document.addEventListener("keydown",direction);
+document.addEventListener("keydown", direction);
 
-function direction(event){
+function direction(event) {
     let key = event.keyCode;
-    if( key === 37 && d != "RIGHT"){
+    if (key === 37 && d != "RIGHT") {
         d = "LEFT";
-    }else if(key === 38 && d != "DOWN"){
+    } else if (key === 38 && d != "DOWN") {
         d = "UP";
-    }else if(key === 39 && d != "LEFT"){
+    } else if (key === 39 && d != "LEFT") {
         d = "RIGHT";
-    }else if(key === 40 && d != "UP"){
+    } else if (key === 40 && d != "UP") {
         d = "DOWN";
     }
 }
@@ -65,10 +76,10 @@ function draw() {
     let snakeX = snake[0].x;
     let snakeY = snake[0].y;
 
-    if( d === "LEFT") snakeX -= box;
-    if( d === "UP") snakeY -= box;
-    if( d === "RIGHT") snakeX += box;
-    if( d === "DOWN") snakeY += box;
+    if (d === "LEFT") snakeX -= box;
+    if (d === "UP") snakeY -= box;
+    if (d === "RIGHT") snakeX += box;
+    if (d === "DOWN") snakeY += box;
 
     if (snakeX === food.x && snakeY === food.y) {
         score++;
@@ -92,7 +103,7 @@ function draw() {
     snake.unshift(newHead);
 
 
-    context.fillStyle = "white"
+    context.fillStyle = "slategrey"
     context.font = "45px Verdana"
     context.fillText(score, 2 * box, 2 * box);
 }
